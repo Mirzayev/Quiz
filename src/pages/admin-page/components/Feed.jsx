@@ -1,10 +1,11 @@
 
-export default function Login(){
+
+export default function Feed(){
 
 
     return(
         <div>
-
+            Feed
         </div>
     )
 }
