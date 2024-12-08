@@ -20,7 +20,7 @@ export default function Header() {
 
 
     return (
-        <div className="flex flex-col md:flex-row h-auto bg-[#041025] py-1 px-5">
+        <div className="flex flex-col md:flex-row bg-[#041025] py-1 px-5 h-[64px]">
             {/* Left Section */}
             <div className=" md:basis-1/6 text-white flex gap-2 items-center justify-center md:justify-start p-2">
                 <img className="max-h-10" src={Logo} alt="Logo"/>

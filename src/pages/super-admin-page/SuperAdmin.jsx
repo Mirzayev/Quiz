@@ -11,8 +11,12 @@ function SuperAdmin(){
                 <Header/>
             </div>
             <div className="admin-page flex ">
-                <div className={"bg-[#041025] min-h-[100vh] basis-1/6"}><Dashbord/></div>
-                <div className="basis-5/6"><Feed/></div>
+            <div className="bg-[#041025] basis-1/6"
+                    style={{ height: "calc(100vh - 64px)" }
+                }><Dashbord/></div>
+                <div className="basis-5/6"
+                style={{ height: "calc(100vh - 64px)" }
+            }><Feed/></div>
 
             </div>
         </div>

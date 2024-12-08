@@ -17,7 +17,7 @@ const items = [
     {
         key: 'sub3',
         label: 'Students',
-        icon: <BarChartOutlined />,
+        icon: <FileProtectOutlined />,
 
     },
     {
