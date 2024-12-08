@@ -5,6 +5,7 @@ import Register from './pages/admin-page/pages/Registr.jsx';
 import SuperAdmin from './pages/super-admin-page/SuperAdmin.jsx';
 import HomePage from './pages/user-page/HomePage.jsx';
 import ResultPage from './pages/user-page/ResultPage.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
 
     return (
@@ -15,6 +16,7 @@ function App() {
             <HomePage/>
             {/* <ResultPage/> */}
             {/* <SuperAdmin/> */}
+            
         </div>
     )
 }

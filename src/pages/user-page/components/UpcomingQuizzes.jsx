@@ -22,7 +22,7 @@ const UpcomingQuizzes = ({ subject, apiUrl }) => {
   }, [apiUrl, subject]);
 
   return (
-    <div className="w-1/3 h-96 overflow-y-auto border rounded-lg shadow-md p-4 bg-white">
+    <div className="w-full md:w-1/3 h-96 overflow-y-auto border rounded-lg shadow-md p-4 bg-white">
       <h2 className="text-xl font-semibold mb-4">{subject}</h2>
       {loading ? (
         <p className="text-center text-gray-500">Loading...</p>
@@ -36,6 +36,7 @@ const UpcomingQuizzes = ({ subject, apiUrl }) => {
               className="p-4 border rounded-lg shadow-sm flex justify-between items-center"
             >
               <h3 className="text-lg font-medium">{quiz.id}</h3>
+              <h3 className="text-lg font-medium">{quiz.title}</h3>
               <a
                 href={`/quiz/${quiz.id}`}
                 className="text-blue-500 text-sm font-medium"
@@ -58,7 +59,7 @@ const QuizContainer = () => {
   ];
 
   return (
-    <div className="p-4 flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 justify-start"> {/* Yonma-yon joylashish uchun flex o'rnatildi */}
       {subjects.map((subject, index) => (
         <UpcomingQuizzes
           key={index}

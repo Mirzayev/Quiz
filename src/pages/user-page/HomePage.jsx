@@ -12,13 +12,15 @@ function HomePage(){
         <div>
             <Header/>
         </div>
-        <div className="admin-page flex ">
+        <div>
+            <div className="admin-page flex ">
             <div className="bg-[#041025] basis-1/6"
                 style={{ height: "calc(100vh - 64px)" }
             }><Dashbord/></div>
         </div>
         <div>
             <UpcomingQuizzes/>
+        </div>
         </div>
     </div>
 
