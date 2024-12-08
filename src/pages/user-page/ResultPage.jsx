@@ -1,10 +1,10 @@
-import Dashbord from '../user-page/components/Dashbord.jsx'
-import Feed from '../user-page/components/Feed.jsx'
-import Header from '../user-page/components/Header.jsx'
+import Dashbord from './components/Dashbord.jsx'
+import Feed from './components/Feed.jsx'
+import Header from './components/Header.jsx'
 import React from 'react'
 import Result from './components/Result.jsx'
 
-function UserPage(){
+function ResultPage(){
 
     return(
         <div className="max-w-[1536px] mx-auto ">
@@ -21,4 +21,4 @@ function UserPage(){
         </div>
     )
 }
-export default UserPage
+export default ResultPage

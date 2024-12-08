@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 function Result() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [addresses, setAddresses] = useState([]);  // 'addreses'ni 'addresses'ga o'zgartiring
+  const [addresses, setAddresses] = useState([]);  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("https://jsonplaceholder.typicode.com/users");
-        const result = await response.json();  // API'dan olingan ma'lumotni JSON formatida o‘qing
+        const result = await response.json(); 
         setData(result);  
-        const addressData = result.map(user => user.address);  // Bu yerda addressData
-        setAddresses(addressData);  // 'addreses'ni 'addresses'ga o'zgartiring
+        const addressData = result.map(user => user.address);  
+        setAddresses(addressData);  
       } catch (error) {
         console.error("API dan ma'lumot olishda xato:", error);
       } finally {
