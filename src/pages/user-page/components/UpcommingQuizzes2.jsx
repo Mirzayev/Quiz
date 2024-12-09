@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../../assets/images/Logo.jpg";
 
+// QuizTitle komponenti
 const QuizTitle = ({ title }) => {
   if (!title) {
-    return <span className="text-gray-500">No title available</span>; 
+    return <span className="text-gray-500">No title available</span>;
   }
 
   return (
     <div className="relative group">
       <h3 className="text-[13px] font-medium">
         <span className="group-hover:hidden">
-          {title.length > 30 ? `${title.slice(0, 40)}...` : title}
+          {title.length > 30 ? `${title.slice(0, 30)}...` : title}
         </span>
         <span className="hidden group-hover:inline">{title}</span>
       </h3>
@@ -18,10 +19,11 @@ const QuizTitle = ({ title }) => {
   );
 };
 
+// UpcomingQuizzes komponenti
 const UpcomingQuizzes = ({ subject, apiUrl }) => {
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false); 
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -34,7 +36,7 @@ const UpcomingQuizzes = ({ subject, apiUrl }) => {
         setQuizzes(data);
       } catch (error) {
         console.error(`${subject} ma'lumotlarini yuklashda xatolik:`, error);
-        setError(true); 
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -61,7 +63,7 @@ const UpcomingQuizzes = ({ subject, apiUrl }) => {
               {quizzes.map((quiz, index) => (
                 <div
                   key={index}
-                  className="p-2 border rounded-lg shadow-sm flex justify-around items-center hover:bg-[#E1F2EB] duration-100 cursor-pointer"
+                  className="p-2 border rounded-lg shadow-sm flex justify-around items-center hover:bg-[#999]"
                 >
                   <div className="w-[35px] h-[35px]">
                     <img className="w-[100%] h-[100%]" src={Logo} alt="Logo" />
@@ -88,49 +90,75 @@ const UpcomingQuizzes = ({ subject, apiUrl }) => {
   );
 };
 
+// QuizContainer komponenti
 const QuizContainer = () => {
-  const subjects = [
-    { name: "Mathematics", apiUrl: "https://jsonplaceholder.typicode.com/posts" },
-    { name: "Physics", apiUrl: "https://jsonplaceholder.typicode.com/todos" },
-    { name: "Chemistry", apiUrl: "https://jsonplaceholder.typicode.com/albums" },
-    { name: "Biology", apiUrl: "https://jsonplaceholder.typicode.com/photos" },
-    { name: "History", apiUrl: "https://jsonplaceholder.typicode.com/users" },
-  ];
+  const [subjects, setSubjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const response = await fetch("YOUR_BACKEND_API_URL"); // Backenddan fanlar ma'lumotini olish
+        if (!response.ok) {
+          throw new Error("Subjects not found");
+        }
+        const data = await response.json();
+        setSubjects(data); // Backenddan olingan fanlarni o'rnatish
+      } catch (error) {
+        console.error("Fanlar ma'lumotlarini yuklashda xatolik:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSubjects();
+  }, []);
 
   return (
-    <div className="flex flex-col"
-    style={{ height: "calc(100vh - 64px)" }}
-    >
+    <div className="flex flex-col" style={{ height: "calc(100vh - 64px)" }}>
+      {/* Header */}
       <header className="w-full h-[60px] bg-gray-800 text-white flex items-center justify-center shadow-md">
         <h1 className="text-2xl font-bold">Quiz Dashboard</h1>
       </header>
 
+      {/* Main Content */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+        {/* Sidebar */}
         <aside className="w-full md:w-[250px] bg-gray-100 p-4 shadow-md">
-          <div className="p-[20px] m-[10px]">
-          <h1 className="text-center font-bold text-[20px]">Name of science</h1>
-          </div>
           <ul className="space-y-2">
-            {subjects.map((subject, index) => (
-              <li
-                key={index}
-                className="p-2 bg-gray-200 rounded-md text-center hover:bg-gray-300"
-              >
-                {subject.name}
-              </li>
-            ))}
+            {loading ? (
+              <li className="p-2 text-center text-gray-500">Loading subjects...</li>
+            ) : subjects.length === 0 ? (
+              <li className="p-2 text-center text-gray-500">No subjects available.</li>
+            ) : (
+              subjects.map((subject, index) => (
+                <li
+                  key={index}
+                  className="p-2 bg-gray-200 rounded-md text-center hover:bg-gray-300"
+                >
+                  {subject.name}
+                </li>
+              ))
+            )}
           </ul>
         </aside>
 
+        {/* Upcoming Quizzes */}
         <main className="flex-1 overflow-y-auto p-4 bg-gray-50">
           <div className="flex flex-wrap gap-4 justify-center">
-            {subjects.map((subject, index) => (
-              <UpcomingQuizzes
-                key={index}
-                subject={subject.name}
-                apiUrl={subject.apiUrl}
-              />
-            ))}
+            {loading ? (
+              <p className="text-center text-gray-500">Loading quizzes...</p>
+            ) : subjects.length === 0 ? (
+              <p className="text-center text-gray-500">No subjects available.</p>
+            ) : (
+              subjects.map((subject, index) => (
+                <UpcomingQuizzes
+                  key={index}
+                  subject={subject.name}
+                  apiUrl={subject.apiUrl} // har bir subject uchun apiUrl kerak
+                />
+              ))
+            )}
           </div>
         </main>
       </div>
