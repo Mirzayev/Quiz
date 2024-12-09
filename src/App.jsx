@@ -10,11 +10,11 @@ function App() {
 
     return (
         <div className=''>
-            {/* <Login/>
-            <Register/>
+             {/* <Login/> */}
+            {/*<Register/>
             <Admin/> */}
             <HomePage/>
-            {/* <ResultPage/> */}
+            <ResultPage/>
             {/* <SuperAdmin/> */}
             
         </div>

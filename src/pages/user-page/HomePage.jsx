@@ -17,9 +17,9 @@ function HomePage(){
             <div className="bg-[#041025] basis-1/6"
                 style={{ height: "calc(100vh - 64px)" }
             }><Dashbord/></div>
-            <div>
-            <div>
-            <QuizContainer/>
+            <div className="basis-5/6">
+            <div className="w-full">
+            <UpcomingQuizzes/>
             </div>
         </div>
         </div>
