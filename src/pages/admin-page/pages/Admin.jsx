@@ -15,9 +15,9 @@ export default function Admin() {
             <div className="bg-[#041025] basis-1/6"
                     style={{ height: "calc(100vh - 64px)" }
                 }><Dashbord/></div>
-                <div className="basis-5/6"
-                style={{ height: "calc(100vh - 64px)" }}
-                ><Feed/></div>
+                <div className="mx-auto my-auto "
+                ><Feed/>
+                </div>
 
             </div>
         </div>

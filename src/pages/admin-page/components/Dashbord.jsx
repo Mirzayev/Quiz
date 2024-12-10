@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { DashboardOutlined, FileProtectOutlined, BarChartOutlined,LoginOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import {NavLink} from "react-router-dom";
+
 const items = [
     {
         key: 'sub1',
-        label: 'Dashbord',
+        label: <NavLink to="">Dashbord</NavLink>,
         icon: <DashboardOutlined />,
 
     },
     {
         key: 'sub2',
-        label: 'Quiz',
+        label: <NavLink to={"/quiz"}>Quiz</NavLink>,
         icon: <FileProtectOutlined />,
 
     },
 
     {
         key: 'sub3',
-        label: 'Result',
+        label: <NavLink to={"/result"}>Result</NavLink>,
         icon: <BarChartOutlined />,
 
     },
