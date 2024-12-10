@@ -12,13 +12,12 @@ function Login(){
                     <div className='flex flex-col gap-[20px]'>  
                         <div className='flex justify-around gap-[20px]'>
                             <button className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold border-[5px] border-[#C5D86D]'><i class="fa-solid fa-user-tie text-[#C5D86D] text-[45px]">‌</i>Sign In</button>
-                            {/* <button className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold'><i class="fa-solid fa-user-graduate text-white text-[45px]">‌</i>Sign in as a learner</button> */}
                             <button className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold'><i class="fa-solid fa-user-plus text-white text-[45px]">‌</i>Create Account</button>
                         </div>
                         <form className='flex flex-col gap-[20px]'>
                             <div className='flex flex-col'>
-                                <label className='text-white text-[16px] p-[7px] font-bold'>Registered email address</label>
-                                <input className='w-full h-[40px] p-[15px] text-[white] rounded-[10px] placeholder:text-[white] bg-[#0D1321] border-[3px] border-[white]' type="email" placeholder='Type your email'/>
+                                <label className='text-white text-[16px] p-[7px] font-bold'>Username</label>
+                                <input className='w-full h-[40px] p-[15px] text-[white] rounded-[10px] placeholder:text-[white] bg-[#0D1321] border-[3px] border-[white]' type="text" placeholder='Username'/>
                             </div>
                             <div className='flex flex-col'>
                                 <label className='text-white text-[16px] p-[7px] font-bold'>Password</label>
