@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../../assets/images/Logo.jpg";
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const QuizTitle = ({ title }) => {
   if (!title) {
@@ -18,9 +21,44 @@ const QuizTitle = ({ title }) => {
   );
 };
 
-const UpcomingQuizzes = ({ subject, allTests }) => {
+const UpcomingQuizzes = ({ subject, allTests = [] }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const navigate = useNavigate();
+
+  const showModal = (quiz) => {
+    setSelectedQuiz(quiz);
+    setIsModalOpen(true);
+  };
+
+  const handleOk = async () => {
+    if (selectedQuiz) {
+      try {
+        const userId = 1; // User ID ni bu yerda dinamik tarzda o'zgartiring
+        const testId = 1;
+        const response = await axios.post(`http://localhost:9090/api-test/${testId}/start?userId=${userId}`, {
+          testId: selectedQuiz.id,
+          userId
+        });
+        
+
+        if (response.data.success) {
+          navigate(`/result`);
+        } else {
+          console.error("Failed to start quiz:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error starting quiz:", error);
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="flex flex-col  border rounded-lg shadow-md p-4 bg-white mx-auto w-full max-w-[400px]">
+    <div className="flex flex-col border rounded-lg shadow-md p-4 bg-white mx-auto w-full max-w-[400px]">
       <h2 className="text-xl font-semibold mb-4">{subject}</h2>
       {allTests.length === 0 ? (
         <p className="text-center text-gray-500">No quizzes available.</p>
@@ -36,20 +74,33 @@ const UpcomingQuizzes = ({ subject, allTests }) => {
               </div>
               <div className="flex flex-col">
                 <div className="w-full flex flex-col">
-                  <h3 className="text-[13px] font-medium">{quiz.id}</h3>
-                  <QuizTitle title={quiz.name} />
+                  <h3 className="text-[13px] uppercase font-bold">{quiz.name}</h3>
+                  <QuizTitle title={quiz.description} />
                 </div>
-                <a
-                  href={`/quiz/${quiz.id}`}
+                <button
+                  onClick={() => showModal(quiz)}
                   className="text-blue-500 text-[13px] font-medium flex justify-end p-[10px]"
                 >
                   Open →
-                </a>
+                </button>
               </div>
             </div>
           ))}
         </div>
       )}
+      <Modal
+        title="Start quiz"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        {selectedQuiz && (
+          <div>
+            <h3 className="font-bold uppercase text-xl">{selectedQuiz.name}</h3>
+            <p className="text-gray-500 mt-2">{selectedQuiz.description}</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
@@ -70,7 +121,7 @@ const QuizContainer = () => {
         if (data.success) {
           const formattedSubjects = data.data.map((subject) => ({
             name: subject.name,
-            allTests: subject.allTests,
+            allTests: subject.allTests || [],
           }));
           setSubjects(formattedSubjects);
         } else {

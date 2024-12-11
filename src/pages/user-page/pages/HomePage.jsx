@@ -2,10 +2,7 @@
 import React from "react";
 import Header from "../components/Header.jsx";
 import Dashbord from "../components/Dashbord.jsx";
-import UpcomingQuizzes from "../components/UpcomingQuizzes.jsx";
-import QuizContainer from "../components/UpcomingQuizzes.jsx";
-
-
+import Feed from "../components/Feed.jsx";
 function HomePage(){
 
     return(
@@ -19,7 +16,7 @@ function HomePage(){
             }><Dashbord/></div>
             <div  className="basis-5/6">
             <div className="w-full">
-            <UpcomingQuizzes/>
+            <Feed/>
             </div>
         </div>
         </div>
