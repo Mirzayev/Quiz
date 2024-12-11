@@ -34,6 +34,7 @@ function App() {
                     path: '/result',
                     element: <Result/>
                 },
+
             ]
         }
     ])
