@@ -6,7 +6,7 @@ export default function Feed() {
 
 
     return (
-        <div  className="Feed bg-slate-100 ">
+        <div  className="Feed bg-slate-100 w-full">
             <div style={{scrollbarWidth: 'none'}} className="">
                 <Outlet/>
             </div>
