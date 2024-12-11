@@ -110,8 +110,8 @@ const QuizContainer = () => {
 
             <div   className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
-                <main  className="flex-1 overflow-y-auto p-4 bg-gray-50">
-                    <div className="flex flex-wrap gap-4 ">
+                <main  className="flex-1 w-full overflow-y-auto  bg-gray-50">
+                    <div className=" gap-4 ">
                         {subjects.map((subject, index) => (
                             <UpcomingQuizzes
                                 key={index}

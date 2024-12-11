@@ -11,6 +11,7 @@ import Result from "./pages/user-page/components/Result.jsx";
 import DashbordElement from "./pages/admin-page/components/DashbordElement.jsx";
 
 function App() {
+<<<<<<< HEAD
     return (
         <Router>
             <Routes>
@@ -27,6 +28,36 @@ function App() {
             </Routes>
         </Router>
     );
+=======
+
+
+
+    const route = createBrowserRouter([
+        {
+            path: '/',
+            element: <Admin/>,
+            children: [
+                {
+                    index: true,
+                    element: <DashbordElement/>,
+                },
+                {
+                   path: "/quiz",
+                    element: <QuizContainer/>
+                },
+                {
+                    path: '/result',
+                    element: <Result/>
+                },
+
+            ]
+        }
+    ])
+    return (
+       <RouterProvider router={route}/>
+
+    )
+>>>>>>> refs/remotes/origin/main
 }
 
 export default App;
