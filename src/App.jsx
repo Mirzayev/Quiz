@@ -38,19 +38,16 @@ function App() {
         }
     ])
     return (
-<<<<<<< HEAD
-       <RouterProvider router={route}/>
-=======
-        <div className=''>
+        
+      <div className=''>
              {/* <Login/> */}
-            {/*<Register/>
-            <Admin/> */}
+            {/*<Register/>*/}
+            <Admin/>
             <HomePage/>
             <ResultPage/>
             {/* <SuperAdmin/> */}
             
         </div>
->>>>>>> refs/remotes/origin/main
     )
 }
 
