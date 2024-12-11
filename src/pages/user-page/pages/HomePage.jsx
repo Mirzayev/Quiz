@@ -1,9 +1,9 @@
 
 import React from "react";
-import Header from "./components/Header.jsx";
-import Dashbord from "./components/Dashbord.jsx";
-import UpcomingQuizzes from "./components/UpcomingQuizzes.jsx";
-import QuizContainer from "./components/UpcomingQuizzes.jsx";
+import Header from "../components/Header.jsx";
+import Dashbord from "../components/Dashbord.jsx";
+import UpcomingQuizzes from "../components/UpcomingQuizzes.jsx";
+import QuizContainer from "../components/UpcomingQuizzes.jsx";
 
 
 function HomePage(){
@@ -17,7 +17,7 @@ function HomePage(){
             <div className="bg-[#041025] basis-1/6"
                 style={{ height: "calc(100vh - 64px)" }
             }><Dashbord/></div>
-            <div className="basis-5/6">
+            <div  className="basis-5/6">
             <div className="w-full">
             <UpcomingQuizzes/>
             </div>

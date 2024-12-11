@@ -1,8 +1,8 @@
-import Dashbord from './components/Dashbord.jsx'
-import Feed from './components/Feed.jsx'
-import Header from './components/Header.jsx'
+import Dashbord from '../components/Dashbord.jsx'
+import Feed from '../components/Feed.jsx'
+import Header from '../components/Header.jsx'
 import React from 'react'
-import Result from './components/Result.jsx'
+import Result from '../components/Result.jsx'
 
 function ResultPage(){
 
