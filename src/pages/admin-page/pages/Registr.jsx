@@ -1,7 +1,6 @@
 
 import LogoWhite from '../../../assets/images/Logo-white.png'
 import LoginImg from '../../../assets/images/LoginImg.png'
-import React from "react"
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 function Register(){

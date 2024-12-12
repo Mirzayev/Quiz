@@ -2,21 +2,20 @@ import Logo from '../../../assets/images/Logo.jpg';
 import { Avatar, Badge, Button, Dropdown, Modal, Space, Input, message, Spin } from "antd";
 import { UserOutlined } from '@ant-design/icons';
 import { useState } from "react";
+import {NavLink} from "react-router-dom";
 
 export default function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState(''); // Input ma’lumotlarini saqlash
     const [loading, setLoading] = useState(false); // Spinnerni boshqarish uchun
 
+
+
     const menuItems = [
-        {
-            key: '1',
-            label: 'Change name',
-            icon: <UserOutlined />,
-        },
+
         {
             key: '2',
-            label: 'Logout',
+            label: <NavLink to={"/Login"}>Logout</NavLink>,
             icon: <UserOutlined />,
         },
     ];
@@ -39,7 +38,7 @@ export default function Header() {
 
         setLoading(true); // Spinnerni yoqish
         try {
-            const response = await fetch('https://localhost9090/api-subject/add', {
+            const response = await fetch('http://localhost:9090/api-subject/add\n', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
