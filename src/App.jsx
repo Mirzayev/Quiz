@@ -9,11 +9,9 @@ import UpcomingQuizzes from "./pages/user-page/components/UpcomingQuizzes.jsx";
 import Result from "./pages/user-page/components/Result.jsx";
 import DashbordElement from "./pages/admin-page/components/DashbordElement.jsx";
 import QuizStart from './pages/user-page/components/QuizStart.jsx';
+import React from "react";
 
 function App() {
-
-
-
 
     const route = createBrowserRouter([
         // {
@@ -37,27 +35,50 @@ function App() {
         //     ],
 
         // },
+        // {
+        //     path: '/',
+        //     element: <HomePage/>,
+        //     children: [
+        //         {
+        //             index: true,
+        //             element: <UpcomingQuizzes/>
+        //         },
+                
+        //         {
+        //             path: '/result',
+        //             element: <QuizStart/>
+        //         },
+                
+
+        //     ],
+
+        // },
         {
-            path: '/',
-            element: <HomePage/>,
-            children: [
-                {
-                    index: true,
-                    element: <UpcomingQuizzes/>
-                },
-                
-                {
-                    path: '/result',
-                    element: <QuizStart/>
-                },
-                
-
-            ],
-
+            path:'/',
+            element: <Login/>
         },
+        {
+            path: '/Login',
+            // element: <Register/>,
+            element: <Login/>,
+        },
+        {
+            path: 'Registr',
+            element: <Register/>
+        }
+
     ])
     return (
        <RouterProvider router={route}/>
+    // <Register/>
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<Login />} />
+    //     <Route path="/user-dashboard" element={<HomePage />} />
+    //     <Route path="/admin-dashboard" element={<HomePage />} />
+    //     <Route path="/super-admin-dashboard" element={<HomePage />} />
+    //   </Routes>
+    // </Router>
     )
 }
 
