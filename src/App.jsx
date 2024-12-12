@@ -65,6 +65,18 @@ function App() {
         {
             path: '/Registr',
             element: <Register/>
+        },
+        {
+            path: '/user-dashboard',
+            element: <HomePage/>
+        },
+        {
+            path: '/admin-dashboard',
+            element: <Admin/>
+        },
+        {
+            path: '/super-admin-dashboard',
+            element: <SuperAdmin/>
         }
 
     ])
