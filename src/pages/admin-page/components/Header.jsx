@@ -38,7 +38,7 @@ export default function Header() {
 
         setLoading(true); // Spinnerni yoqish
         try {
-            const response = await fetch('http://localhost:9090/api-subject/add\n', {
+            const response = await fetch('http://localhost:9090/api-subject/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
