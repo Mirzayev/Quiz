@@ -30,7 +30,11 @@ function App() {
             element: <Login/>,
         },
         {
+<<<<<<< HEAD
             path: '/registr',
+=======
+            path: '/Registr',
+>>>>>>> 57bb1136d6102c9d9061dd690a119953f2d4274c
             element: <Register/>
         },
         {
@@ -39,6 +43,7 @@ function App() {
         },
         {
             path: '/admin-dashboard',
+<<<<<<< HEAD
             element: <Admin/>,
             children: [
                 {
@@ -54,6 +59,9 @@ function App() {
                     element: <Result/>
                 }
             ]
+=======
+            element: <Admin/>
+>>>>>>> 57bb1136d6102c9d9061dd690a119953f2d4274c
         },
         {
             path: '/super-admin-dashboard',
