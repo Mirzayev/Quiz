@@ -51,7 +51,7 @@ export default function StudentList() {
                 {data && (
                     <div>
                         <p><strong>User Name:</strong> {data.userName}</p>
-                    </div>
+n                    </div>
                 )}
             </div>
         </div>
