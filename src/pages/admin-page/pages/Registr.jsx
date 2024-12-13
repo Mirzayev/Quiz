@@ -44,7 +44,7 @@ function Register() {
 
       localStorage.setItem('registerDto', JSON.stringify(formData))
       if (response.ok) {
-        alert('Registration successful! Check your email for verification.');
+        alert('Check your email for verification.');
         setVerificationCodeModal(true);
       } else {
         const errorData = await response.json();
@@ -70,6 +70,7 @@ function Register() {
   
       // Javob holatini tekshirish
       if (response.ok) {
+        console.log(response)
         navigate('/user-dashboard'); // Foydalanuvchini bosh sahifaga yo'naltirish
       } else {
         const errorData = await response.json();

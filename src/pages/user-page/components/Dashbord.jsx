@@ -11,7 +11,7 @@ const items = [
     },
     {
         key: 'sub2',
-        label: <NavLink to={"/user-result"}> Result</NavLink>,
+        label: <NavLink to={"/user-dashboard/result"}> Result</NavLink>,
         icon: <BarChartOutlined />,
 
     },

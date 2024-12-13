@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import LogoWhite from "../../../assets/images/Logo-white.png";
@@ -23,7 +23,7 @@ function Login() {
       
       // Local storage ga ma'lumotni saqlaymiz
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage.getItem('user'))
+      // console.log(localStorage.getItem('user'))
       // Role bo'yicha yo'naltirish
       if (user.role === "USER") {
         navigate("/user-dashboard");
