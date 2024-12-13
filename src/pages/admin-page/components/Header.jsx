@@ -12,7 +12,11 @@ export default function Header() {
 
 
     const menuItems = [
-
+        {
+            key: '1',
+            label: <NavLink to={""}>Change password</NavLink>,
+            icon: <UserOutlined />,
+        },
         {
             key: '2',
             label: <NavLink to={"/Login"}>Logout</NavLink>,
