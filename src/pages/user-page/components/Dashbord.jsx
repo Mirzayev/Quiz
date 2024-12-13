@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 const items = [
     {
         key: 'sub1',
-        label: <NavLink to={"/"}>Dashbord</NavLink>,
+        label: <NavLink to={"/user-dashboard"}>Dashbord</NavLink>,
         icon: <DashboardOutlined />,
 
     },
     {
         key: 'sub2',
-        label: <NavLink to={"/result"}> Result</NavLink>,
+        label: <NavLink to={"/user-result"}> Result</NavLink>,
         icon: <BarChartOutlined />,
 
     },

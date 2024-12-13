@@ -55,43 +55,32 @@ function Register() {
       alert('Server error, please try again later.');
     }
   };
-  const [registerDto, setRegisterDto] = useState({
-    username: '',
-    name: '',
-    surname: '',
-    email: '',
-    password: '',
-    prePassword: ''
-  });
+  
   // Kodni tasdiqlash funksiyasi
   const handleVerify = async () => {
     try {
-      const information = JSON.parse(localStorage.getItem('registerDto'));
-
-
-      console.log(code)
-      console.log(registerDto)
+      // Tasdiqlash kodini konsolda tekshirish
+      console.log('Verification code:', code);
+  
+      // Tasdiqlash so'rovi yuborish
       const response = await fetch(`http://localhost:9090/api-auth/verify?code=${code}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ registerDTO: registerDto }),
+        headers: { 'Content-Type': 'application/json' }
       });
-
-      console.log(localStorage.getItem('registerDto'))
-
+  
+      // Javob holatini tekshirish
       if (response.ok) {
-        alert('Verification successful! Redirecting to homepage...');
-        navigate('/home');
+        navigate('/user-dashboard'); // Foydalanuvchini bosh sahifaga yo'naltirish
       } else {
         const errorData = await response.json();
-        alert('Verification failed: ' + errorData.message);
+        alert('Verification failed: ' + errorData.message); // Xato xabari ko'rsatish
       }
     } catch (error) {
       console.error('Verification error:', error);
-      alert('Server error, please try again later.');
+      alert('Server error, please try again later.'); // Server xatosi haqida xabar
     }
   };
-
+  
   return (
     <div className="w-full min-h-screen bg-[#0D1321] flex justify-center items-center">
       <div className="w-[1440px] h-[720px] bg-[#0D1321] p-[20px] flex justify-around">

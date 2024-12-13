@@ -71,6 +71,10 @@ function App() {
             element: <HomePage/>
         },
         {
+            path: '/user-result',
+            element: <Result/>
+        },
+        {
             path: '/admin-dashboard',
             element: <Admin/>
         },
