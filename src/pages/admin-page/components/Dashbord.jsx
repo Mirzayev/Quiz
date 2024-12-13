@@ -23,12 +23,7 @@ const items = [
         icon: <BarChartOutlined />,
 
     },
-    {
-        key: 'sub4',
-        label: 'Logout',
-        icon: <LoginOutlined />,
 
-    },
 ];
 const Dashbord = () => {
     const [theme, setTheme] = useState('dark');

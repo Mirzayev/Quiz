@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Input, Button, message } from "antd";
+import { Modal, Input, Button, message, Select } from "antd";
 import Logo from "../../../assets/images/Logo.jpg";
+
+const { Option } = Select;
 
 const QuizTitle = ({ title }) => {
     if (!title) {
@@ -19,15 +21,11 @@ const QuizTitle = ({ title }) => {
     );
 };
 
-const UpcomingQuizzes = ({ subject, allTests, openModal }) => {
+const UpcomingQuizzes = ({ subject, allTests }) => {
     return (
         <div className="flex flex-col border rounded-lg shadow-md p-4 bg-white mx-auto w-full max-w-[400px]">
             <div className="flex w-full justify-between items-center">
                 <h2 className="text-xl font-semibold mb-4">{subject}</h2>
-                <i
-                    className="fa-solid fa-plus text-blue-400 text-[16px] cursor-pointer hover:text-slate-600"
-                    onClick={openModal}
-                ></i>
             </div>
             {allTests.length === 0 ? (
                 <p className="text-center text-gray-500">No quizzes available.</p>
@@ -38,6 +36,7 @@ const UpcomingQuizzes = ({ subject, allTests, openModal }) => {
                             key={index}
                             className="p-2 border rounded-lg shadow-sm flex justify-around items-center hover:bg-[#E1F2EB] duration-100 cursor-pointer"
                         >
+
                             <div className="w-[35px] h-[35px]">
                                 <img className="w-full h-full" src={Logo} alt="Logo" />
                             </div>
@@ -47,7 +46,7 @@ const UpcomingQuizzes = ({ subject, allTests, openModal }) => {
                                     <QuizTitle title={quiz.name} />
                                 </div>
                                 <a
-                                    href={`/quiz/${quiz.id}`}
+                                    href={`/admin-dashboard/quiz/${quiz.id}`}
                                     className="text-blue-500 text-[13px] font-medium flex justify-end p-[10px]"
                                 >
                                     Open →
@@ -66,7 +65,7 @@ const QuizContainer = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [quizData, setQuizData] = useState({ name: "", description: "" });
+    const [quizData, setQuizData] = useState({ name: "", description: "", subjectId: null });
 
     useEffect(() => {
         const fetchSubjects = async () => {
@@ -78,6 +77,7 @@ const QuizContainer = () => {
                 const data = await response.json();
                 if (data.success) {
                     const formattedSubjects = data.data.map((subject) => ({
+                        id: subject.id,
                         name: subject.name,
                         allTests: subject.allTests,
                     }));
@@ -102,7 +102,7 @@ const QuizContainer = () => {
 
     const handleModalClose = () => {
         setIsModalVisible(false);
-        setQuizData({ name: "", description: "" });
+        setQuizData({ name: "", description: "", subjectId: null });
     };
 
     const handleInputChange = (e) => {
@@ -110,7 +110,16 @@ const QuizContainer = () => {
         setQuizData({ ...quizData, [name]: value });
     };
 
+    const handleSubjectChange = (value) => {
+        setQuizData({ ...quizData, subjectId: value });
+    };
+
     const handleSubmit = async () => {
+        if (!quizData.subjectId) {
+            message.error("Please select a subject.");
+            return;
+        }
+
         try {
             const response = await fetch("http://localhost:9090/api-test/add", {
                 method: "POST",
@@ -141,7 +150,15 @@ const QuizContainer = () => {
     return (
         <div className="flex flex-col" style={{ height: "calc(100vh - 64px)" }}>
             <header className="w-full h-[60px] bg-gray-800 text-white flex items-center justify-center shadow-md">
-                <h1 className="text-2xl font-bold">Quiz Dashboard</h1>
+                <div className="flex justify-between px-10 w-full">
+                    <h1 className="text-2xl font-bold">Quiz Dashboard</h1>
+                    <Button
+                        onClick={handleModalOpen}
+                        className={"bg-[#05DBF2] text-slate-700"}
+                    >
+                        + Add Quiz
+                    </Button>
+                </div>
             </header>
 
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
@@ -152,12 +169,11 @@ const QuizContainer = () => {
                         ) : error ? (
                             <p className="text-center text-gray-500">Failed to load quizzes.</p>
                         ) : (
-                            subjects.map((subject, index) => (
+                            subjects.map((subject) => (
                                 <UpcomingQuizzes
-                                    key={index}
+                                    key={subject.id}
                                     subject={subject.name}
                                     allTests={subject.allTests}
-                                    openModal={handleModalOpen}
                                 />
                             ))
                         )}
@@ -173,6 +189,18 @@ const QuizContainer = () => {
                 okText="Submit"
                 cancelText="Cancel"
             >
+                <Select
+                    placeholder="Select Subject"
+                    onChange={handleSubjectChange}
+                    className="mb-3 w-full"
+                    value={quizData.subjectId}
+                >
+                    {subjects.map((subject) => (
+                        <Option key={subject.id} value={subject.id}>
+                            {subject.name}
+                        </Option>
+                    ))}
+                </Select>
                 <Input
                     placeholder="Quiz Name"
                     name="name"
@@ -186,8 +214,6 @@ const QuizContainer = () => {
                     value={quizData.description}
                     onChange={handleInputChange}
                 />
-
-
             </Modal>
         </div>
     );

@@ -47,7 +47,8 @@ function App() {
                 },
                 {
                     path: "quiz",
-                    element: <UpcomingQuizzes/>
+                    element: <UpcomingQuizzes/>,
+
                 },
                 {
                     path: "result",
