@@ -10,13 +10,15 @@ export default function StudentList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:9090/api-history/by{userId}");
-
+                const response = await fetch("http://localhost:9090/api-history/all");
+                
+                
                 if (!response.ok) {
                     throw new Error(`Server xatolik: ${response.status}`);
                 }
 
                 const result = await response.json();
+                console.log(result)
                 setData(result); // Ma'lumotni state ichiga joylashtirish
             } catch (err) {
                 setError(err.message); // Xatolik holatini o'rnatish
@@ -39,11 +41,6 @@ export default function StudentList() {
                 </Button>
             </div>
 
-            <div className="row flex items-center px-5 py-[15px] gap-[15px]">
-                <Button className={"px-6 py-1 bg-slate-100 rounded-full shadow-lg"}>Group1</Button>
-                <Button className={"px-6 py-1 bg-slate-100 rounded-full shadow-lg"}>Group2</Button>
-                <Button className={"px-6 py-1 bg-slate-100 rounded-full shadow-lg"}>Group3</Button>
-            </div>
 
             <div className="px-5 py-3">
                 {loading && <p>Loading data...</p>}
@@ -51,7 +48,8 @@ export default function StudentList() {
                 {data && (
                     <div>
                         <p><strong>User Name:</strong> {data.userName}</p>
-                    </div>
+                        console.log(data)
+n                    </div>
                 )}
             </div>
         </div>

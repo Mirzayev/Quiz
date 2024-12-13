@@ -8,7 +8,8 @@ function Result() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        const user = localStorage.getItem('user')
+        const response = await fetch(`https://localhost:9090/api-history/by/${user.id}`);
         const result = await response.json();
         setData(result);
         const addressData = result.map(user => user.address);

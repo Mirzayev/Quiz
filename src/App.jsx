@@ -12,6 +12,7 @@ import DashbordElement from "./pages/admin-page/components/DashbordElement.jsx";
 import QuizStart from './pages/user-page/components/QuizStart.jsx';
 import React from "react";
 import StudentList from './pages/admin-page/components/StudentList.jsx';
+import Dashbord from './pages/user-page/components/Dashbord.jsx';
 
 function App() {
 
@@ -36,17 +37,13 @@ function App() {
             children: [
                 {
                     index:true,
-                    element: <StudentList/>
+                    element: <UpcomingQuizzes/>
                 },
                 {
                     path: "result",
                     element: <Result/>
                 }
             ]    
-        },
-        {
-            path: '/user-result',
-            element: <Result/>
         },
         {
             path: '/admin-dashboard',

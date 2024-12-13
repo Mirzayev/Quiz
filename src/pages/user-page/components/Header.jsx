@@ -8,7 +8,7 @@ export default function Header() {
     const menuItems = [
         {
             key: '1',
-            label: 'Change name',
+            label: 'Change password',
             icon: <UserOutlined />,
         },
         {

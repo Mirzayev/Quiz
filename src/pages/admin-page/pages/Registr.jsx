@@ -42,7 +42,7 @@ function Register() {
         body: JSON.stringify(formData),
       });
 
-      localStorage.setItem('registerDto', JSON.stringify(formData))
+      localStorage.setItem('user', JSON.stringify(formData))
       if (response.ok) {
         alert('Check your email for verification.');
         setVerificationCodeModal(true);
@@ -60,17 +60,17 @@ function Register() {
   const handleVerify = async () => {
     try {
       // Tasdiqlash kodini konsolda tekshirish
-      console.log('Verification code:', code);
+      // console.log('Verification code:', code);
   
       // Tasdiqlash so'rovi yuborish
       const response = await fetch(`http://localhost:9090/api-auth/verify?code=${code}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' } 
       });
   
       // Javob holatini tekshirish
       if (response.ok) {
-        console.log(response)
+        // console.log(response)
         navigate('/user-dashboard'); // Foydalanuvchini bosh sahifaga yo'naltirish
       } else {
         const errorData = await response.json();
