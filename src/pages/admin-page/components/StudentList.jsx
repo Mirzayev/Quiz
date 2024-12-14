@@ -35,36 +35,40 @@ export default function StudentList() {
 
     // Komponentni render qilish
     return (
-        <div>
-            <div className="row flex w-full justify-between px-5 my-[40px]">
-                <h4 className={"text-xl font-semibold"}>Students list</h4>
-            </div>
+        <div style={{ height: "calc(100vh - 64px)" }} className="overflow-hidden">
+    <div className="row flex w-full justify-between px-5 my-[40px]">
+        <h4 className={"text-xl font-semibold"}>Students list</h4>
+    </div>
 
-            <div className="flex-1 overflow-hidden">
-            <div className="px-5 py-3 bg-[#ccc] overflow-y-auto max-h-[700px] flex-1">
-                {loading && <p>Loading data...</p>}
-                {error && <p className="text-red-500">Error: {error}</p>}
-                {data && (
-                    <div>
-                        {data.map((user, index) => (
-                            <div key={index} className="py-2 px-5 border-b border-gray-200 my-4 bg-slate-200  rounded-md shadow-lg flex justify-between items-end">
-                                <div>
-                               <div className={"bg-slate-300 w-10 h-10 rounded-full flex items-center justify-center"}>
-                                   <i className={"fa-solid fa-user"}></i>
-                               </div>
-                                    <p className=" my-3"> Name: {user.name || "No Name Available"}</p>
-                                    <p className=" my-3">Surname: {user.surname || "No Name Available"}</p>
+    <div className="flex-1">
+        <div className="px-5 py-3 bg-[#ccc] max-h-[500px] overflow-y-auto rounded-md shadow-inner">
+            {loading && <p>Loading data...</p>}
+            {error && <p className="text-red-500">Error: {error}</p>}
+            {data && (
+                <div>
+                    {data.map((user, index) => (
+                        <div
+                            key={index}
+                            className="py-2 px-5 border-b border-gray-200 my-4 bg-slate-200 rounded-md shadow-lg flex justify-between items-end"
+                        >
+                            <div>
+                                <div className={"bg-slate-300 w-10 h-10 rounded-full flex items-center justify-center"}>
+                                    <i className={"fa-solid fa-user"}></i>
                                 </div>
-                                <div>
-                                    <p className=" my-3"> Username: {user.username || "No Name Available"}</p>
-                                    <p className=" my-3">Email: {user.email || "No Name Available"}</p>
-                                </div>
+                                <p className="my-3">Name: {user.name || "No Name Available"}</p>
+                                <p className="my-3">Surname: {user.surname || "No Name Available"}</p>
                             </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-            </div>
+                            <div>
+                                <p className="my-3">Username: {user.username || "No Name Available"}</p>
+                                <p className="my-3">Email: {user.email || "No Name Available"}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
+    </div>
+</div>
+
     );
 }
