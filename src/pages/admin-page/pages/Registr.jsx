@@ -56,29 +56,22 @@ function Register() {
     }
   };
   
-  // Kodni tasdiqlash funksiyasi
   const handleVerify = async () => {
     try {
-      // Tasdiqlash kodini konsolda tekshirish
-      // console.log('Verification code:', code);
-  
-      // Tasdiqlash so'rovi yuborish
       const response = await fetch(`http://localhost:9090/api-auth/verify?code=${code}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' } 
       });
   
-      // Javob holatini tekshirish
       if (response.ok) {
-        // console.log(response)
-        navigate('/user-dashboard'); // Foydalanuvchini bosh sahifaga yo'naltirish
+        navigate('/user-dashboard'); 
       } else {
         const errorData = await response.json();
-        alert('Verification failed: ' + errorData.message); // Xato xabari ko'rsatish
+        alert('Verification failed: ' + errorData.message); 
       }
     } catch (error) {
       console.error('Verification error:', error);
-      alert('Server error, please try again later.'); // Server xatosi haqida xabar
+      alert('Server error, please try again later.'); 
     }
   };
   

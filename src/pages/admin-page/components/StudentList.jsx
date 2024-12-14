@@ -38,13 +38,10 @@ export default function StudentList() {
         <div>
             <div className="row flex w-full justify-between px-5 my-[40px]">
                 <h4 className={"text-xl font-semibold"}>Students list</h4>
-                <Button className={"rounded-full px-4 py-2 h-full shadow-lg flex items-center gap-2"}>
-                    <p>Student directory</p>
-                    <i className={"fa-solid fa-arrow-right text-orange-400"}></i>
-                </Button>
             </div>
 
-            <div className="px-5 py-3">
+            <div className="flex-1 overflow-hidden">
+            <div className="px-5 py-3 bg-[#ccc] overflow-y-auto max-h-[700px] flex-1">
                 {loading && <p>Loading data...</p>}
                 {error && <p className="text-red-500">Error: {error}</p>}
                 {data && (
@@ -66,6 +63,7 @@ export default function StudentList() {
                         ))}
                     </div>
                 )}
+            </div>
             </div>
         </div>
     );

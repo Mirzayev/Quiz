@@ -13,6 +13,8 @@ import QuizStart from './pages/user-page/components/QuizStart.jsx';
 import React from "react";
 import StudentList from './pages/admin-page/components/StudentList.jsx';
 import Dashbord from './pages/user-page/components/Dashbord.jsx';
+import QuizContainer from './pages/admin-page/components/UpcomingQuizzes.jsx'
+import ChangePassword from './pages/user-page/components/ChangePassword.jsx';
 
 function App() {
 
@@ -42,6 +44,10 @@ function App() {
                 {
                     path: "result",
                     element: <Result/>
+                },
+                {
+                    path: "changepassword",
+                    element: <ChangePassword/>
                 }
             ]    
         },
@@ -55,23 +61,45 @@ function App() {
                 },
                 {
                     path: "quiz",
-                    element: <UpcomingQuizzes/>,
+                    element: <QuizContainer/>,
 
                 },
                 {
                     path: "result",
                     element: <ResultForAdmin/>
+                },
+                {
+                    path: "changepassword",
+                    element: <ChangePassword/>
                 }
             ]
         },
         {
             path: '/super-admin-dashboard',
-            element: <SuperAdmin/>
+            element: <SuperAdmin/>,
+            children:[
+                {
+                    index: true,
+                    element: <DashbordElement/>
+                },
+                {
+                    path: "quiz",
+                    element: <QuizContainer/>,
+
+                },
+                {
+                    path: "result",
+                    element: <ResultForAdmin/>
+                },
+                {
+                    path: "changepassword",
+                    element: <ChangePassword/>
+                }
+            ]
         }
     ])
     return (
        <RouterProvider router={route}/>
-
     )
 }
 

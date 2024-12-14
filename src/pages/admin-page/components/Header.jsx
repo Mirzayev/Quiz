@@ -14,7 +14,7 @@ export default function Header() {
     const menuItems = [
         {
             key: '1',
-            label: <NavLink to={""}>Change password</NavLink>,
+            label: <NavLink to={"/admin-dashboard/changepassword"}>Change password</NavLink>,
             icon: <UserOutlined />,
         },
         {
