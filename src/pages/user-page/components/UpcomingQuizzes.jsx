@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Logo from "../../../assets/images/Logo.jpg";
+import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Logo from "../../../assets/images/Logo.jpg";
 
 const QuizTitle = ({ title }) => {
   if (!title) {
@@ -34,16 +34,21 @@ const UpcomingQuizzes = ({ subject, allTests = [] }) => {
   const handleOk = async () => {
     if (selectedQuiz) {
       try {
-        const userId = 1; // User ID ni bu yerda dinamik tarzda o'zgartiring
-        const testId = 1;
-        const response = await axios.post(`http://localhost:9090/api-test/${testId}/start?userId=${userId}`, {
-          testId: selectedQuiz.id,
-          userId
-        });
-        
+        const userId = JSON.parse(localStorage.getItem("user")).id;
+        const testId = selectedQuiz.id;
+        const response = await axios.post(
+          `http://localhost:9090/api-test/${testId}/start?userId=${userId}`,
+          { testId, userId }
+        );
 
         if (response.data.success) {
-          navigate(`/result`);
+          navigate("/user-dashboard/quizstart", {
+            state: {
+              testId,
+              userId,
+              questions: selectedQuiz.questions || [],
+            },
+          });
         } else {
           console.error("Failed to start quiz:", response.data.message);
         }
@@ -147,7 +152,7 @@ const QuizContainer = () => {
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
         <aside className="w-full md:w-[250px] bg-gray-100 p-4 shadow-md">
           <div className="p-[20px] m-[10px]">
-            <h1 className="text-center font-bold text-[20px]">Name of science</h1>
+            <h1 className="text-center font-bold text-[20px]">Name of Science</h1>
           </div>
           {loading ? (
             <p className="text-center text-gray-500">Loading...</p>

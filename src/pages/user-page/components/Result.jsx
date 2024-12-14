@@ -22,6 +22,8 @@ function Result() {
 
         const result = await response.json();
         if (result.success) {
+          // API'dan kelgan ma'lumotni tekshirib ko'ramiz
+          console.log(result.data);
           setData(result.data);
         } else {
           console.error("Ma'lumot olishda xato:", result.message || "Noma'lum xato");
@@ -39,6 +41,7 @@ function Result() {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   if (data.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center mt-10">
@@ -67,9 +70,13 @@ function Result() {
               key={index}
               className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} hover:bg-gray-200 rounded-lg`}
             >
+              <td className="py-3 px-4">{item.username}</td>
               <td className="py-3 px-4">{item.testName}</td>
               <td className="py-3 px-4">{item.subjectName}</td>
-              <td className="py-3 px-4">{item.totalScore}</td>
+              <td className="py-3 px-4">
+                {/* totalScore qiymatini raqamga aylantirib ko'rsatyapmiz */}
+                {isNaN(Number(item.totalScore)) ? "Invalid score" : Number(item.totalScore)}
+              </td>
               <td className="py-3 px-4">{new Date(item.createdAt).toLocaleString()}</td>
             </tr>
           ))}

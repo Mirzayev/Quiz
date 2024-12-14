@@ -48,6 +48,10 @@ function App() {
                 {
                     path: "changepassword",
                     element: <ChangePassword/>
+                },
+                {
+                    path: "quizstart",
+                    element: <QuizStart/>
                 }
             ]    
         },
