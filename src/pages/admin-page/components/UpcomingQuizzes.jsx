@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Input, Button, message, Select } from "antd";
 import Logo from "../../../assets/images/Logo.jpg";
+import {NavLink} from "react-router-dom";
 
 const { Option } = Select;
 
@@ -30,7 +31,7 @@ const UpcomingQuizzes = ({ subject, allTests }) => {
             {allTests.length === 0 ? (
                 <p className="text-center text-gray-500">No quizzes available.</p>
             ) : (
-                <div className="max-h-[200px] overflow-y-auto flex flex-col gap-2">
+                <NavLink to={"/admin-dashboard/quiz/add"} className="max-h-[200px] overflow-y-auto flex flex-col gap-2">
                     {allTests.map((quiz, index) => (
                         <div
                             key={index}
@@ -54,7 +55,7 @@ const UpcomingQuizzes = ({ subject, allTests }) => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </NavLink>
             )}
         </div>
     );
@@ -66,6 +67,7 @@ const QuizContainer = () => {
     const [error, setError] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [quizData, setQuizData] = useState({ name: "", description: "", subjectId: null });
+
 
     useEffect(() => {
         const fetchSubjects = async () => {
@@ -160,6 +162,7 @@ const QuizContainer = () => {
                     </Button>
                 </div>
             </header>
+
 
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
                 <main className="flex-1 overflow-y-auto p-4 bg-gray-50">
