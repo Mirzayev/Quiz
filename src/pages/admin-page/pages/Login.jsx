@@ -23,7 +23,7 @@ function Login() {
       
       // Local storage ga ma'lumotni saqlaymiz
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(localStorage.getItem('user'))
+      // console.log(localStorage.getItem('user'))
       // Role bo'yicha yo'naltirish
       if (user.role === "USER") {
         navigate("/user-dashboard");
@@ -46,8 +46,8 @@ function Login() {
             Continue your learning journey with QuizWiz!
           </h1>
           <div className='flex justify-around gap-[20px]'>
-                            <NavLink className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold  border-[5px] border-[#C5D86D]' to={'/Login'}><i class="fa-solid fa-user-tie text-white text-[45px]">‌</i>Sign In</NavLink>
-                            <NavLink className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold' to={'/Registr'}><i class="fa-solid fa-user-plus text-[#C5D86D] text-[45px]">‌</i>Create Account</NavLink>
+                            <NavLink className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold  border-[5px] border-[#C5D86D]' to={'/Login'}><i className="fa-solid fa-user-tie text-white text-[45px]">‌</i>Sign In</NavLink>
+                            <NavLink className='w-[190px] h-[130px] gap-[10px] flex flex-col items-center p-[20px] bg-[#333333] rounded-[10px]  text-[white] text-[15px] font-bold' to={'/Registr'}><i className="fa-solid fa-user-plus text-[#C5D86D] text-[45px]">‌</i>Create Account</NavLink>
                         </div>
           <form className="flex flex-col gap-[20px]" onSubmit={handleLogin}>
             <div className="flex flex-col">

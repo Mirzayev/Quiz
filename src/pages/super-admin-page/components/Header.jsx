@@ -2,18 +2,19 @@ import Logo from '../../../assets/images/Logo.jpg';
 import {Avatar, Badge, Button, Dropdown, Space} from "antd";
 import {  UserOutlined } from '@ant-design/icons';
 import {useState} from "react";
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
 
     const menuItems = [
         {
             key: '1',
-            label: 'Change name',
+            label: <NavLink to={"/user-dashboard/changepassword"}>Change password</NavLink>,
             icon: <UserOutlined />,
         },
         {
             key: '2',
-            label: 'Logout',
+            label: <NavLink to={'/Login'}>Logout</NavLink>,
             icon: <UserOutlined />,
         },
     ];
